@@ -7,10 +7,13 @@ home_cover_height:
 post_cover:
 post_cover_height:
 categories:
+- [DataBase,Oracle]
 tags:
+- Oracle
+- DataBase
 ---
 
-文章的概述！
+Oracle的学习笔记
 <!-- more -->
 <br/>
 
