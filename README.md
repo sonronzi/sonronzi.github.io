@@ -10,3 +10,7 @@ git clone -b source https://github.com/sonronzi/sonronzi.github.io.git && cd son
 git pull && git add . && git commit -m 'add ' && git push
 ```
 
+```shell
+hexo clean && hexo g && hexo d && hexo s
+```
+
