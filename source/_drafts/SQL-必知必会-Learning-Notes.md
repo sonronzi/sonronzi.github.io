@@ -93,11 +93,32 @@ tags:
 
 ## 02丨DBMS的前世今生
 
+> 两个 IBM 研究员在 1974 年发表了一篇有关结构化英语查询语言的论文《SEQUEL：一门结构化的英语查询语言》，并将这门语言命名为 SEQUEL。SEQUEL 的语言标准是开放的，但是围绕它的商业化竞争却从来没有停止过。首先因为商标之争，SEQUEL 改名为 SQL，后来有一个重量级的公司基于那篇论文研发出了商业化的数据库管理软件，这就是 Oracle。自此之后，又诞生了一堆大家熟知的 DBMS，比如 MySQL、SQL Server、PostgreSQL、DB2 和 MongoDB 等
 
+<br/>
 
+### DB、DBS 和 DBMS 的区别是什么
 
+- DB
+  - DataBase（数据库）
+  - 是存储数据的集合（可以把它理解为多个数据表）
+- DBS
+  - DataBase System（数据库系统）
+  - 它是更大的概念，包括了数据库、数据库管理系统以及数据库管理人员 DBA
 
+- DBMS
+  - DataBase Management System（数据库管理系统）
+  - 它可以对多个数据库进行管理；可以理解为 DBMS = 多个数据库（DB） + 管理程序
 
+> 们有时候把 Oracle、MySQL 等称之为数据库，但确切讲，它们应该是数据库管理系统，即 DBMS
+
+<br/>
+
+### 排名前 20 的 DBMS 都是那些
+
+- 数据库排名：https://db-engines.com/en/ranking
+- 关系型数据库绝对是 DBMS 的主流，其中使用最多的 DBMS 分别是 Oracle、MySQL 和 SQL Server
+- 关系型数据库（RDBMS）就是建立在关系模型基础上的数据库，SQL 就是关系型数据库的查询语言
 
 
 
