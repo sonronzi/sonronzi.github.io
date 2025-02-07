@@ -284,24 +284,54 @@
             
                 <span class="meta-info-item post-update-date">
                     <i class="icon fa-solid fa-arrows-rotate"></i>&nbsp;
-                    <span class="datetime" data-updated="Mon Jan 27 2025 20:45:28 GMT-0500">2025-01-28</span>
+                    <span class="datetime" data-updated="Tue Jan 28 2025 00:35:36 GMT-0500">2025-01-28</span>
                 </span>
             
         
 
         
+            <span class="meta-info-item post-category border-box"><i class="icon fas fa-folder"></i>&nbsp;
+                <ul class="post-category-ul">
+                    
+                            <li class="category-item"><a href="/categories/DataBase/">DataBase</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/DataBase/NoSQL/">NoSQL</a></li>
+                        
+                    
+                            <li class="category-item">&nbsp;<i class="icon fas fa-angle-right"></i>&nbsp;<a href="/categories/DataBase/NoSQL/Redis/">Redis</a></li>
+                        
+                    
+                </ul>
+            </span>
+        
 
+        
+            <span class="post-tag meta-info-item border-box">
+                <ul class="post-tag-ul">
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/Redis/">Redis</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/NoSQL/">NoSQL</a></li>
+                        
+                    
+                            <li class="tag-item"><span class="tag-separator"><i class="icon fas fa-hashtag"></i></span><a href="/tags/DataBase/">DataBase</a></li>
+                        
+                    
+                </ul>
+            </span>
         
 
         
         
             <span class="meta-info-item post-wordcount">
-                <i class="icon fas fa-file-word"></i>&nbsp;<span>13 Words</span>
+                <i class="icon fas fa-file-word"></i>&nbsp;<span>1.6k Words</span>
             </span>
         
         
             <span class="meta-info-item post-min2read">
-                <i class="icon fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+                <i class="icon fas fa-clock"></i>&nbsp;<span>6 Mins</span>
             </span>
         
         
@@ -323,11 +353,144 @@
                     
 
                     
-                         <p>文章的概述！</p>
+                         <p>51CTO学堂课程<a class="link"   target="_blank" rel="noopener" href="https://edu.51cto.com/course/31384.html" >redis 7 全栈式培训教程<i class="fas fa-external-link-alt"></i></a>学习笔记</p>
 <span id="more"></span>
 <br/>
 
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><br/>
+<h1 id="Redis介绍"><a href="#Redis介绍" class="headerlink" title="Redis介绍"></a>Redis介绍</h1><h2 id="Redis-功能特性"><a href="#Redis-功能特性" class="headerlink" title="Redis 功能特性"></a>Redis 功能特性</h2><ul>
+<li>Redis 英文全称是 Remote Dictionary Server（远程字典服务）</li>
+<li>Redis 是完全开源的，使用 ANSI C 语言编写，遵守 BSD 协议，是一个高性能的 Key-Value 数据库</li>
+<li>Redis 提供了丰富的数据结构，例如 String、 Hash、 List、Set、SortedSet 等等</li>
+<li>Redis 的数据是存在内存中的，但 Redis 也可以通过定期策略或者手动操作进行持久化数据</li>
+<li>Redis 广泛应用于缓存、分布式锁等多种场景；同时 Redis 支持事务、持久化、LUA 脚本、发布&#x2F;订阅、缓存淘汰、流技术等多种功能特性</li>
+<li>Redis 提供了主从模式、Redis Sentinel 和 Redis Cluster 集群架构方案</li>
+</ul>
+<br/>
+
+<br/>
+
+<h2 id="Redis-适用场景"><a href="#Redis-适用场景" class="headerlink" title="Redis 适用场景"></a>Redis 适用场景</h2><ul>
+<li><strong>热点加速&#x2F;缓存加速</strong><ul>
+<li>缓存作为 Redis 最主要的功能，没有有之一，尤其是作为互联网应用上的热点场景，使用非常多,比如像高并发下的数据加载</li>
+</ul>
+</li>
+<li><strong>分布式会话&#x2F;共享会话</strong><ul>
+<li>一个分布式 Web 服务将用户的 Session 信息保存在各自服务器，如果节点故障或者是用户刷新一次可能就需要重新登录，这样显然有问题。实际上，我们通常使用 Redis 将用户的 Session 进行集中管理，每次用户更新或者查询登录信息都直接从 Redis 中集中获取</li>
+</ul>
+</li>
+<li><strong>排行榜场景</strong><ul>
+<li>在互联网应用中，有各种各样的排行榜，如电商网站的月度销量排行榜、社交 APP 的礼物排行榜、小程序的投票排行榜等等。Redis 提供的zset 数据类型能够快速实现这些复杂的排行榜</li>
+</ul>
+</li>
+<li><strong>分布式计数器&#x2F;集群计数器</strong><ul>
+<li>我们知道，单机下面我们可以利用原子操作&#x2F;类型实现计数器，那么如果是布式环境呢？比如电商网站商品的浏览量、视频网站视频的播放数等。为了保证数据实时效，每次浏览都得给+1，并发量高时如果每次都请求数据库操作无疑是种挑战和压力。Redis 提供的 incr 命令来实现计数器功能，内存操作，性能非常好，非常适用于这些计数场景</li>
+</ul>
+</li>
+<li><strong>最新消息</strong><ul>
+<li>Redis 列表结构，LPUSH 可以在列表头部插入一个内容 ID 作为关键字，LTRIM 可用来限制列表的数量，这样列表永远为 N 个 ID，无需查询最新的列表，直接根据 ID 去到对应的内容页即可</li>
+</ul>
+</li>
+<li><strong>请求限流</strong><ul>
+<li>主要用于集群限流</li>
+</ul>
+</li>
+<li><strong>分布式锁实现</strong><ul>
+<li>很多公司中都使用了分布式技术，分布式技术带来的技术挑战是对同一个资源的并发访问，如全局 ID、减库存、秒杀等场景，并发量不大的场景可以使用数据库的悲观锁来实现，但在高并发场景中，利用数据库锁来控制资源的并发访问性能极低，我们可以利用 Redis 的 setnx 功能来编写分布式的锁</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<br/>
+
+<h2 id="Redis-周边对比"><a href="#Redis-周边对比" class="headerlink" title="Redis 周边对比"></a>Redis 周边对比</h2><h3 id="同类产品对比-memcached"><a href="#同类产品对比-memcached" class="headerlink" title="同类产品对比(memcached)"></a>同类产品对比(memcached)</h3><ul>
+<li>Redis 支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用</li>
+<li>Redis 不仅仅支持简单的 key-value 类型的数据，同时还提供 list，set，storted set，hash 等数据结构，同时支持发布&#x2F;订阅、消息等多种特性</li>
+<li>Redis 支持数据同步与备份，比如 master-slave 模式的数据同步与备份</li>
+</ul>
+<br/>
+
+<h3 id="与传统数据库关系-mysql"><a href="#与传统数据库关系-mysql" class="headerlink" title="与传统数据库关系(mysql)"></a>与传统数据库关系(mysql)</h3><ul>
+<li>Redis 是 key-value 数据库(NoSQL 一种)，mysql 是关系数据库</li>
+<li>Redis 数据操作主要在内存，而 mysql 主要存储在磁盘</li>
+<li>Redis 在某一些场景使用中要明显优于 mysql，比如计数器、排行榜等方面</li>
+<li>Redis 通常用于一些特定场景，需要与 Mysql 一起配合使用</li>
+<li>两者并不是相互替换和竞争关系，而是共用和配合使用</li>
+</ul>
+<br/>
+
+<br/>
+
+<br/>
+
+<h1 id="Redis-环境安装"><a href="#Redis-环境安装" class="headerlink" title="Redis 环境安装"></a>Redis 环境安装</h1><h2 id="安装前置条件"><a href="#安装前置条件" class="headerlink" title="安装前置条件"></a>安装前置条件</h2><h3 id="操作系统说明"><a href="#操作系统说明" class="headerlink" title="操作系统说明"></a>操作系统说明</h3><ul>
+<li>Redis 是用 ANSI C 编写的，可以在大多数 POSIX 系统上运行，比如 Linux、*BSD 和 Mac OS X，没有外部依赖</li>
+<li>Linux 和 OS X 是 Redis 开发和测试最多的两个操作系统</li>
+<li>官方推荐使用 Linux 部署，Windows 版本没有官方支持</li>
+</ul>
+<br/>
+
+<h3 id="操作系统参数设置"><a href="#操作系统参数设置" class="headerlink" title="操作系统参数设置"></a>操作系统参数设置</h3><ul>
+<li>&#x2F;etc&#x2F;sysctl.conf 中设置 vm.overcommit_memory &#x3D; 1，并用 sysctl vm.overcommit_memory&#x3D;1 立即生效<ul>
+<li>0：内核将检查是否有足够的内存分配给程序，如果没有则申请失败，并把错误返回给应用进程。而在 Redis 中这个错误就会表现为“Cannot allocate memory”，然后触发 OOM</li>
+<li>1：表示内核允许超量使用内存直到用完为止</li>
+<li>2：表示内核决不超量使用内存，即系统整个内存空间不能超过 swap+50%的 RAM 值，50%是 overcommit_ratio 默认值，此参数支持修改</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（方式一）永久生效，但是需要重启</span></span><br><span class="line">vm.overcommit_memory = 1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看所有配置的参数</span></span><br><span class="line">sysctl -p</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查配置的情况</span></span><br><span class="line">cat /proc/sys/vm/overcommit_memory</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">（方式二）本次生效，服务器发生重启后就失效了</span></span><br><span class="line">echo 1 &gt; /proc/sys/vm/overcommit_memory</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>配置大内存页面，echo never &gt; &#x2F;sys&#x2F;kernel&#x2F;mm&#x2F;transparent_hugepage&#x2F;enabled（只是临时生效），并同过下面命令进行永久生效</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat &gt;&gt; /etc/rc.d/rc.local &lt;&lt; EOF</span><br><span class="line">if test -f /sys/kernel/mm/transparent_hugepage/enabled; then</span><br><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line">fi</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>关闭交换 swap 内存，swapoff -a，并通过 vim &#x2F;etc&#x2F;fstab 将交换内存注释掉(确保物理机有够用的物理内存</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看swap交换内存</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Swap: 参数全为0表示关闭</span></span><br><span class="line">free -g</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">临时关闭</span></span><br><span class="line">swapoff -a</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">永久关闭</span></span><br><span class="line">vim /etc/fstab</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注释掉跟swap相关的</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/dev/mapper/centos-swap swap                    swap    defaults        0 0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<br/>
+
+<br/>
+
+<h2 id="源码安装单机版"><a href="#源码安装单机版" class="headerlink" title="源码安装单机版"></a>源码安装单机版</h2><ul>
+<li><strong>安装目录规划</strong><ul>
+<li>根目录：redis</li>
+<li>子目录：<ul>
+<li>bin 程序目录</li>
+<li>conf 配置文件</li>
+<li>data 数据目录</li>
+<li>run 进程目录</li>
+<li>log 日志目录</li>
+<li>tls tls 证书目录(可选)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br/>
+
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">准备用户</span></span><br><span class="line">groupadd redis</span><br><span class="line">useradd -m -g redis redis</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换用户</span></span><br><span class="line">su - redis</span><br><span class="line"></span><br><span class="line">mkdir bin conf data run log tls tmp</span><br><span class="line">cd tmp</span><br><span class="line">wget http://download.redis.io/releases/redis-7.4.2.tar.gz</span><br><span class="line">tar -zxvf redis-7.4.2.tar.gz</span><br><span class="line">cd redis-7.4.2</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">make 或者多线程编译 make -j 2</span></span><br><span class="line">make -j 2</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<br/>
 
 <br/>
 
@@ -411,6 +574,22 @@
                 <div class="post-bottom-tags-and-share border-box">
                     <div>
                         
+                            <ul class="post-tags-box border-box">
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/Redis/">Redis</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/NoSQL/">NoSQL</a>
+                                    </li>
+                                
+                                    <li class="tag-item border-box">
+                                        <i class="icon fas fa-hashtag"></i>&nbsp;<a href="/tags/DataBase/">DataBase</a>
+                                    </li>
+                                
+                            </ul>
+                        
                     </div>
                     <div>
                         
@@ -481,7 +660,7 @@
             <div class="pc-post-toc right-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%ACX%E7%AB%A0"><span class="nav-text">第X章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#remark"><span class="nav-text">remark</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E4%BB%8B%E7%BB%8D"><span class="nav-text">Redis介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="nav-text">Redis 功能特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">Redis 适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%91%A8%E8%BE%B9%E5%AF%B9%E6%AF%94"><span class="nav-text">Redis 周边对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E7%B1%BB%E4%BA%A7%E5%93%81%E5%AF%B9%E6%AF%94-memcached"><span class="nav-text">同类产品对比(memcached)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB-mysql"><span class="nav-text">与传统数据库关系(mysql)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-text">Redis 环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="nav-text">安装前置条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%B4%E6%98%8E"><span class="nav-text">操作系统说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-text">操作系统参数设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85%E5%8D%95%E6%9C%BA%E7%89%88"><span class="nav-text">源码安装单机版</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%ACX%E7%AB%A0"><span class="nav-text">第X章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#remark"><span class="nav-text">remark</span></a></li></ol>
     </div>
 </div>
 
@@ -527,7 +706,7 @@
             
                 <span class="count-item border-box word">
                     <span class="item-type border-box">Total words</span>
-                    <span class="item-value border-box word">3.7k</span>
+                    <span class="item-value border-box word">5.4k</span>
                 </span>
             
 
@@ -680,7 +859,7 @@
             <div class="tablet-post-toc">
                 <div class="post-toc-wrap border-box">
     <div class="post-toc border-box">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%ACX%E7%AB%A0"><span class="nav-text">第X章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#remark"><span class="nav-text">remark</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis%E4%BB%8B%E7%BB%8D"><span class="nav-text">Redis介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="nav-text">Redis 功能特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">Redis 适用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E5%91%A8%E8%BE%B9%E5%AF%B9%E6%AF%94"><span class="nav-text">Redis 周边对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E7%B1%BB%E4%BA%A7%E5%93%81%E5%AF%B9%E6%AF%94-memcached"><span class="nav-text">同类产品对比(memcached)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8E%E4%BC%A0%E7%BB%9F%E6%95%B0%E6%8D%AE%E5%BA%93%E5%85%B3%E7%B3%BB-mysql"><span class="nav-text">与传统数据库关系(mysql)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="nav-text">Redis 环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="nav-text">安装前置条件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%AF%B4%E6%98%8E"><span class="nav-text">操作系统说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE"><span class="nav-text">操作系统参数设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85%E5%8D%95%E6%9C%BA%E7%89%88"><span class="nav-text">源码安装单机版</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%ACX%E7%AB%A0"><span class="nav-text">第X章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#remark"><span class="nav-text">remark</span></a></li></ol>
     </div>
 </div>
 
